@@ -1,7 +1,11 @@
 package main
 
-func main() {
-	e := routes.routes()
+import (
+	"MINI_PROJECT_ALTERRA/routes"
+)
 
-	e.Logger.Fatal(e.start(":8000"))
+func main() {
+	e := routes.Init()
+
+	e.Logger.Fatal(e.Start(":8000"))
 }

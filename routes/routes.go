@@ -6,7 +6,7 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-func main() *echo.Echo {
+func Init() *echo.Echo {
 	e := echo.New()
 
 	e.GET("/", func(c echo.Context) error {
