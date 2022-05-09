@@ -1,7 +1,7 @@
 package main
 
 import (
-	"MINI_PROJECT_ALTERRA/db"
+	db "MINI_PROJECT_ALTERRA/database"
 	"MINI_PROJECT_ALTERRA/routes"
 )
 
