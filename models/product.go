@@ -34,7 +34,7 @@ func FetchAllproduct() (Response, error) {
 
 	con := db.CreateCon()
 
-	sqlStatement := "SELECT * FROM product"
+	sqlStatement = "SELECT * FROM product"
 	rows, err := con.Query(sqlStatement)
 	defer rows.Close()
 
@@ -115,7 +115,7 @@ func UpdateProduct(Id_product int, description_product string, status string, re
 }
 
 //> fungsi delete data product
-func DeleteProduct(Id_product int) {
+func DeleteProduct(Id_product int) error {
 	var res Response
 
 	con := db.CreateCon()
@@ -142,5 +142,5 @@ func DeleteProduct(Id_product int) {
 		"rowsAffected": rowsAffected,
 	}
 
-	return res, nil
+	return res, err
 }
