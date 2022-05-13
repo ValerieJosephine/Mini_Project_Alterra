@@ -80,6 +80,8 @@ func StoreProduct(Id_product int, description_product string, status string, res
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+
+	return res, nil
 }
 
 //> fungsi update data product
