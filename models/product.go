@@ -4,8 +4,11 @@ import (
 	db "MINI_PROJECT_ALTERRA/database"
 
 	"net/http"
+
+	"gorm.io/gorm"
 )
 
+//>menulis tipe data
 type product struct {
 	Id_product          int    `json:"id"`
 	description_product string `json:"description"`
@@ -15,6 +18,15 @@ type product struct {
 	updated_at          int    `json:"updated"`
 }
 
+// type AProductRepo interface {
+// 	FetchAllproduct() ([]product.ProductCostum, error)
+// }
+
+type ProductRepo struct {
+	db *gorm.DB
+}
+
+// >untuk get product dari db
 func FetchAllproduct() (Response, error) {
 	var obj product
 	var arrobj []product
@@ -23,9 +35,11 @@ func FetchAllproduct() (Response, error) {
 	con := db.CreateCon()
 
 	sqlStatement := "SELECT * FROM product"
-
 	rows, err := con.Query(sqlStatement)
 	defer rows.Close()
+
+	// product := []product.ProductCostum{}
+	// err := c.db.Find(&product).Error
 
 	if err != nil {
 		return res, err
@@ -47,6 +61,7 @@ func FetchAllproduct() (Response, error) {
 
 }
 
+// >untuk fungsi post produk
 func StoreProduct(Id_product int, description_product string, status string, restock_at int, price int, updated_at int) (Response, error) {
 	var res Response
 
@@ -61,9 +76,71 @@ func StoreProduct(Id_product int, description_product string, status string, res
 
 	result, err := stmt.Exec(Id_product, description_product, status, restock_at, price, updated_at)
 	if err != nil {
+		return result, err
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+}
+
+//> fungsi update data product
+func UpdateProduct(Id_product int, description_product string, status string, restock_at int, price int, updated_at int) (Response, error) {
+	var res Response
+
+	con := db.CreateCon()
+	sqlStatement := "UPDATE product SET description_product = ?, status = ?, restock_at = ?, price = ?, updated_at = ? WHERE id = ?"
+
+	stmt, err := con.Prepare(sqlStatement)
+	if err != nil {
+		return res, err
+	}
+
+	result, err := stmt.Exec(description_product, status, restock_at, price, updated_at, Id_product)
+	if err != nil {
+		return result, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
+		return result, err
+	}
+
+	res.Status = http.StatusOK
+	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rowsAffected": rowsAffected,
+	}
+
+	return res, nil
+}
+
+//> fungsi delete data product
+func DeleteProduct(Id_product int) {
+	var res Response
+
+	con := db.CreateCon()
+	sqlStatement := "DELETE FROM product WHERE id = ?"
+
+	stmt, err := con.Prepare(sqlStatement)
+	if err != nil {
+		return res, err
+	}
+
+	result, err := stmt.Exec(Id_product)
+	if err != nil {
+		return res, err
+	}
+
+	rowsAffected, err := result.RowsAffected()
+	if err != nil {
 		return res, err
 	}
 
 	res.Status = http.StatusOK
 	res.Message = "Success"
+	res.Data = map[string]int64{
+		"rowsAffected": rowsAffected,
+	}
+
+	return res, nil
 }
