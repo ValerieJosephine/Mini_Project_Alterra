@@ -6,89 +6,91 @@ import (
 	"fmt"
 
 	"net/http"
-
-	"gorm.io/gorm"
+	// "gorm.io/gorm"
 )
 
 //>menulis tipe data
 type Product struct {
-	Id_product          int    `json:"id"`
-	description_product string `json:"description"`
-	status              string `json:"status"`
-	restock_at          int    `json:"restock"`
-	price               int    `json:"price"`
-	updated_at          int    `json:"updated"`
+	IdProduct          int    `json:"id"`
+	DescriptionProduct string `json:"description"`
+	Status             string `json:"status"`
+	RestockAt          int    `json:"restock"`
+	Price              int    `json:"price"`
+	UpdatedAt          int    `json:"updated"`
 }
 
 // type AProductRepo interface {
 // 	FetchAllproduct() ([]product.ProductCostum, error)
 // }
 
-type ProductRepo struct {
-	db *gorm.DB
-}
+// type ProductRepo struct {
+// 	db *gorm.DB
+// }
 
 // >untuk get product dari db
-func FetchAllproduct() (Response, error) {
-	var obj Product
-	var arrobj []Product
-	var res Response
+// func FetchAllproduct() (Response, error) {
+// 	var obj Product
+// 	var arrobj []Product
+// 	var res Response
 
-	con := db.CreateCon()
+// 	con := db.GetConnection()
 
-	sqlStatement := "SELECT * FROM product"
-	rows, err := con.Raw(sqlStatement).Rows()
-	defer rows.Close()
+// 	sqlStatement := "SELECT * FROM product"
+// 	rows, err := con.Raw(sqlStatement).Rows()
+// 	defer rows.Close()
 
-	if err != nil {
-		return res, err
-	}
+// 	if err != nil {
+// 		return res, err
+// 	}
 
-	for rows.Next() {
-		err = rows.Scan(&obj.Id_product, &obj.description_product, &obj.status, &obj.restock_at, &obj.price, &obj.updated_at)
-		if err != nil {
-			return res, err
-		}
+// 	for rows.Next() {
+// 		err = rows.Scan(&obj.Id_product, &obj.description_product, &obj.status, &obj.restock_at, &obj.price, &obj.updated_at)
+// 		if err != nil {
+// 			return res, err
+// 		}
 
-		arrobj = append(arrobj, obj)
-	}
-	res.Status = http.StatusOK
-	res.Message = "Success"
-	res.Data = arrobj
+// 		// arrobj = append(arrobj, obj)
+// 	}
 
-	return res, nil
+// 	arrobj = append(arrobj, obj)
 
-}
+// 	res.Status = http.StatusOK
+// 	res.Message = "Success"
+// 	res.Data = arrobj
+
+// 	return res, nil
+
+// }
 
 // >untuk fungsi post produk
-func StoreProduct(Id_product int, description_product string, status string, restock_at int, price int, updated_at int) (Response, error) {
-	var res Response
+// func StoreProduct(Id_product int, description_product string, status string, restock_at int, price int, updated_at int) (Response, error) {
+// 	var res Response
 
-	con := db.CreateCon()
+// 	con := db.GetConnection()
 
-	sqlStatement := "INSERT product (Id_product, description_product, status, restock_at, price, updated_at) VALUES (?,?,?,?,?,?)"
+// 	sqlStatement := "INSERT product (Id_product, description_product, status, restock_at, price, updated_at) VALUES (?,?,?,?,?,?)"
 
-	stmt := con.Exec(sqlStatement)
-	if stmt.Error != nil {
-		return res, stmt.Error
-	}
+// 	stmt := con.Exec(sqlStatement)
+// 	if stmt.Error != nil {
+// 		return res, stmt.Error
+// 	}
 
-	// result, err := stmt.Exec(Id_product, description_product, status, restock_at, price, updated_at)
-	// if err != nil {
-	// 	return result, err
-	// }
+// result, err := stmt.Exec(Id_product, description_product, status, restock_at, price, updated_at)
+// if err != nil {
+// 	return result, err
+// }
 
-	res.Status = http.StatusOK
-	res.Message = "Success"
+// 	res.Status = http.StatusOK
+// 	res.Message = "Success"
 
-	return res, nil
-}
+// 	return res, nil
+// }
 
 //> fungsi update data product
 func UpdateProduct(Id_product int, description_product string, status string, restock_at int, price int, updated_at int) (Response, error) {
 	var res Response
 
-	con := db.CreateCon()
+	con := db.GetConnection()
 	sqlStatement := "UPDATE product SET description_product = ?, status = ?, restock_at = ?, price = ?, updated_at = ? WHERE id = ?"
 
 	// stmt, err := con.Prepare(sqlStatement)
@@ -125,7 +127,7 @@ func UpdateProduct(Id_product int, description_product string, status string, re
 func DeleteProduct(Id_product int) (Response, error) {
 	var res Response
 
-	con := db.CreateCon()
+	con := db.GetConnection()
 	sqlStatement := "DELETE FROM product WHERE id = ?"
 
 	// stmt, err := con.Prepare(sqlStatement)

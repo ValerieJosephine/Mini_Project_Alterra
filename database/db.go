@@ -28,6 +28,6 @@ func Init() {
 
 }
 
-func CreateCon() *gorm.db {
+func GetConnection() *gorm.DB {
 	return db
 }
