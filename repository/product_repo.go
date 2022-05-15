@@ -38,6 +38,15 @@ func (r *Repository) StoreProduct(input models.Product) (models.Product, error) 
 	return input, nil
 }
 
+func (r *Repository) DeleteProduct(id int) error {
+	err := r.db.Where("id = ?").Delete(&models.Product{}).Error
+	if err != nil {
+		return err
+	}
+	return err
+
+}
+
 // func FetchAllproduct() (Response, error) {
 // 	var obj Product
 // 	var arrobj []Product

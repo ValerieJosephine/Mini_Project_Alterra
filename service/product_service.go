@@ -33,3 +33,12 @@ func (s *Service) StoreAllProduct(input models.Product) (models.Product, error) 
 	return data, nil
 
 }
+
+func (s *Service) DeleteAllProduct(id int) error {
+	err := s.repository.DeleteProduct(id)
+	if err != nil {
+		return err
+	}
+
+	return err
+}

@@ -1,7 +1,7 @@
 package controller
 
 import (
-	"MINI_PROJECT_ALTERRA/utils"
+	"MINI_PROJECT_ALTERRA/helpers"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -10,7 +10,7 @@ import (
 func GenerateHashPassword(c echo.Context) error {
 	password := c.Param("password")
 
-	hash, _ := utils.HashPassword(password)
+	hash, _ := helpers.HashPassword(password)
 
 	return c.JSON(http.StatusOK, hash)
 }

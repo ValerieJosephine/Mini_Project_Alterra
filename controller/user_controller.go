@@ -7,14 +7,6 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// type UserController struct {
-// 	service service.Service
-// }
-
-// func NewUserController(service service.Service) *UserController {
-// 	return &UserController{service: service}
-// }
-
 func (ctrl *AllController) GetAllUser(c echo.Context) error {
 	data, err := ctrl.service.GetAllUser()
 	if err != nil {

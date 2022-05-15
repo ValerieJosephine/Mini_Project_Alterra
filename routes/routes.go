@@ -22,13 +22,16 @@ func Init() *echo.Echo {
 		return c.String(http.StatusOK, "welcome to warehouse!")
 	})
 
+	//>perintah tabel product
 	e.GET("/product", AllController.FetchAllproduct)
 	e.POST("/product", AllController.StoreAllProduct)
-	// e.POST("/product", controller.StoreProduct)
+	e.DELETE("/product", AllController.DeleteAllProduct)
 	// e.PUT("/product", controller.UpdateProduct)
-	// e.DELETE("/product", controller.DeleteProduct)
+
+	//>perintah tabel user
 	e.GET("/user", AllController.GetAllUser)
 
+	//>perintah generate hash(protection)
 	e.GET("/generate-hash/:password", controller.GenerateHashPassword)
 
 	return e
