@@ -2,23 +2,22 @@ package repository
 
 import (
 	"MINI_PROJECT_ALTERRA/models"
-
-	"gorm.io/gorm"
+	// "gorm.io/gorm"
 )
 
-type ProductRepository interface {
-	FetchProducts() ([]models.Product, error)
-	StoreProduct(input models.Product) (models.Product, error)
-}
+// type ProductRepository interface {
+// 	FetchProducts() ([]models.Product, error)
+// 	StoreProduct(input models.Product) (models.Product, error)
+// }
 
-type Repository struct {
-	db *gorm.DB
-}
+// type Repository struct {
+// 	db *gorm.DB
+// }
 
-func NewRepository(db *gorm.DB) *Repository {
-	return &Repository{db: db}
+// func NewRepository(db *gorm.DB) *Repository {
+// 	return &Repository{db: db}
 
-}
+// }
 
 func (r *Repository) FetchProducts() ([]models.Product, error) {
 	var products []models.Product

@@ -4,21 +4,21 @@ import (
 	"net/http"
 
 	"MINI_PROJECT_ALTERRA/models"
-	"MINI_PROJECT_ALTERRA/service"
+	// "MINI_PROJECT_ALTERRA/service"
 
 	"github.com/labstack/echo/v4"
 )
 
-type ProductController struct {
-	service service.Service
-}
+// type ProductController struct {
+// 	service service.Service
+// }
 
-func NewProductController(service service.Service) *ProductController {
-	return &ProductController{service: service}
-}
+// func NewProductController(service service.Service) *ProductController {
+// 	return &ProductController{service: service}
+// }
 
 //>ambil get smua data
-func (ctrl *ProductController) FetchAllproduct(c echo.Context) error {
+func (ctrl *AllController) FetchAllproduct(c echo.Context) error {
 	data, err := ctrl.service.FetchAllproduct()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
@@ -33,7 +33,7 @@ func (ctrl *ProductController) FetchAllproduct(c echo.Context) error {
 }
 
 //>perintah tulis post data
-func (ctrl *ProductController) StoreAllProduct(c echo.Context) error {
+func (ctrl *AllController) StoreAllProduct(c echo.Context) error {
 	var input models.Product
 	err := c.Bind(&input)
 	if err != nil {

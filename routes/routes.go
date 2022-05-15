@@ -14,19 +14,20 @@ import (
 func Init() *echo.Echo {
 	e := echo.New()
 	db := db.GetConnection()
-	productRepo := repository.NewRepository(db)
-	productService := service.NewProductService(productRepo)
-	productController := controller.NewProductController(*productService)
+	AllRepo := repository.NewAllRepository(db)
+	AllService := service.NewAllService(AllRepo)
+	AllController := controller.NewAllController(*AllService)
 
 	e.GET("/", func(c echo.Context) error {
 		return c.String(http.StatusOK, "welcome to warehouse!")
 	})
 
-	e.GET("/product", productController.FetchAllproduct)
-	e.POST("/product", productController.StoreAllProduct)
+	e.GET("/product", AllController.FetchAllproduct)
+	e.POST("/product", AllController.StoreAllProduct)
 	// e.POST("/product", controller.StoreProduct)
 	// e.PUT("/product", controller.UpdateProduct)
 	// e.DELETE("/product", controller.DeleteProduct)
+	e.GET("/user", AllController.GetAllUser)
 
 	e.GET("/generate-hash/:password", controller.GenerateHashPassword)
 

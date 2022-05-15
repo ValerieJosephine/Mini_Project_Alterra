@@ -2,16 +2,16 @@ package service
 
 import (
 	"MINI_PROJECT_ALTERRA/models"
-	"MINI_PROJECT_ALTERRA/repository"
+	// "MINI_PROJECT_ALTERRA/repository"
 )
 
-type Service struct {
-	repository repository.ProductRepository
-}
+// type Service struct {
+// 	repository repository.AllRepository
+// }
 
-func NewProductService(repository repository.ProductRepository) *Service {
-	return &Service{repository: repository}
-}
+// func NewAllService(repository repository.AllRepository) *Service {
+// 	return &Service{repository: repository}
+// }
 
 func (s *Service) FetchAllproduct() ([]models.Product, error) {
 	var products []models.Product
