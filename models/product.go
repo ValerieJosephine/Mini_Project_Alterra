@@ -9,7 +9,7 @@ import (
 	// "gorm.io/gorm"
 )
 
-//>menulis tipe data
+//>tipe data
 type Product struct {
 	IdProduct          int    `json:"id"`
 	DescriptionProduct string `json:"description"`

@@ -24,11 +24,11 @@ func TestGetAllUser(t *testing.T) {
 	req.Header.Add("Authorization", "Bearer $2a$04$rMv4Ey21uFztzv0d8TtoZOxXw8Tkh6osfVnXZtQTjC1VF5rrwI5Ge")
 	c.SetPath("/users")
 
-	ut := repository.TestUnitConfig()
+	ut := repository.NewTestUnit()
 	userController := controller.NewAllController(ut.IFaceUserRepo)
 
 	// // Assertions
-	if assert.NoError(t, userController.GetUsers(c)) {
+	if assert.NoError(t, userController.GetAllUser(c)) {
 		assert.Equal(t, http.StatusOK, rec.Code)
 		assert.Equal(t, userJSON, rec.Body.String())
 	}

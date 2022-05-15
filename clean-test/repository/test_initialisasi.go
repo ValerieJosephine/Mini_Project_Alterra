@@ -16,7 +16,7 @@ type TestUnit struct {
 
 func NewTestUnit() TestUnit {
 	tu := TestUnit{}
-	// bersifat inisialisasi
+	// untuk inisialisasi
 	dbMock, mock, err := sqlmock.New()
 	if err != nil {
 		panic(err)
@@ -44,6 +44,6 @@ func NewTestUnit() TestUnit {
 		"SELECT * FROM `users`")).
 		WillReturnRows(
 			sqlmock.NewRows([]string{"id", "username"}).
-				AddRow(1, "fahmy").AddRow(2, "abida"))
+				AddRow(1, "fifi").AddRow(0, ""))
 	return tu
 }

@@ -22,11 +22,26 @@ func Init() *echo.Echo {
 		return c.String(http.StatusOK, "welcome to warehouse!")
 	})
 
+	//>perintah tabel logbook in
+	e.GET("/logbookin", AllController.GetAllStockIn)
+
+	//>perintah tabel logbook out
+	e.GET("/logbookout", AllController.GetAllStockOut)
+
 	//>perintah tabel product
 	e.GET("/product", AllController.FetchAllproduct)
 	e.POST("/product", AllController.StoreAllProduct)
 	e.DELETE("/product", AllController.DeleteAllProduct)
 	// e.PUT("/product", controller.UpdateProduct)
+
+	//>perintah tabel product type
+	e.GET("/producttype", AllController.GetAllProductType)
+
+	//>perintah tabel supplier
+	e.GET("/supplier", AllController.GetAllSupplier)
+
+	//>perintah tabel supplier category
+	e.GET("/suppliercategory", AllController.GetAllTypeSupplier)
 
 	//>perintah tabel user
 	e.GET("/user", AllController.GetAllUser)
