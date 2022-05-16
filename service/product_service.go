@@ -24,6 +24,15 @@ func (s *Service) FetchAllproduct() ([]models.Product, error) {
 
 }
 
+func (s *Service) FetchProductWithId(id int) error {
+	err := s.repository.FetchProductById(id)
+	if err != nil {
+		return err
+	}
+
+	return err
+}
+
 func (s *Service) StoreAllProduct(input models.Product) (models.Product, error) {
 	data, err := s.repository.StoreProduct(input)
 	if err != nil {
@@ -42,3 +51,14 @@ func (s *Service) DeleteAllProduct(id int) error {
 
 	return err
 }
+
+// func (s *Service) UpdateProducts() ([]models.Product, error) {
+// 	var products []models.Product
+// 	data, err := s.repository.UpdateProduct(&products)
+// 	if err != nil {
+// 		return products, err
+// 	}
+
+// 	return data, nil
+
+// }

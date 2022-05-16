@@ -29,6 +29,15 @@ func (r *Repository) FetchProducts() ([]models.Product, error) {
 
 }
 
+func (r *Repository) FetchProductById(id int) error {
+	err := r.db.Where("id = ?").Find(&models.Product{}).Error
+	if err != nil {
+		return err
+	}
+	return err
+
+}
+
 func (r *Repository) StoreProduct(input models.Product) (models.Product, error) {
 	err := r.db.Create(&input).Error
 	if err != nil {
@@ -40,6 +49,16 @@ func (r *Repository) StoreProduct(input models.Product) (models.Product, error) 
 
 func (r *Repository) DeleteProduct(id int) error {
 	err := r.db.Where("id = ?").Delete(&models.Product{}).Error
+	if err != nil {
+		return err
+	}
+	return err
+
+}
+
+func (r *Repository) UpdateProduct([]models.Product) error {
+	var products []models.Product
+	err := r.db.Model(&products).Updates(map[string]interface{}{"description": "?", "status": "?", "restock": '?', "updated": '?'}).Error
 	if err != nil {
 		return err
 	}
