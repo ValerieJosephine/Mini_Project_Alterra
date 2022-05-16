@@ -1,4 +1,4 @@
-package controller
+package cleantest
 
 import (
 	"MINI_PROJECT_ALTERRA/service"
@@ -7,15 +7,15 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-type AllController struct {
+type ControllerUser struct {
 	service service.Service
 }
 
-func NewAllController(service service.Service) *AllController {
-	return &AllController{service: service}
+func NewUserController(service service.Service) *ControllerUser {
+	return &ControllerUser{service: service}
 }
 
-func (ctrl *AllController) GetAllUser(c echo.Context) error {
+func (ctrl *ControllerUser) GetAllUser(c echo.Context) error {
 	data, err := ctrl.service.GetAllUser()
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})

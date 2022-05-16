@@ -1,4 +1,4 @@
-package controller
+package cleantest
 
 import (
 	"MINI_PROJECT_ALTERRA/controller"

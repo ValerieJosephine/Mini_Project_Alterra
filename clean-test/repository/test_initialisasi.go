@@ -1,4 +1,4 @@
-package repository
+package cleantest
 
 import (
 	"MINI_PROJECT_ALTERRA/repository"
