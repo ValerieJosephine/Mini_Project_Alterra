@@ -30,7 +30,7 @@ func Init() *echo.Echo {
 
 	//>perintah tabel product
 	e.GET("/product", AllController.FetchAllproduct)
-	e.GET("/product", AllController.FetchProductWithId)
+	e.GET("/productid", AllController.FetchProductWithId)
 	e.POST("/product", AllController.StoreAllProduct)
 	e.DELETE("/product", AllController.DeleteAllProduct)
 	// e.PUT("/product", controller.UpdateProduct)

@@ -8,7 +8,7 @@ import (
 
 type AllRepository interface {
 	FetchProducts() ([]models.Product, error)
-	FetchProductById(id int) error
+	FetchProductById(id int) (models.Product, error)
 	StoreProduct(input models.Product) (models.Product, error)
 	DeleteProduct(id int) error
 	UpdateProduct([]models.Product) error

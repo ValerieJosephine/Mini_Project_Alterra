@@ -6,6 +6,7 @@ type StockOut struct {
 	IdProductType int    `json:"id product type"`
 	Description   string `json:"desc"`
 	Quantity      string `json:"quantity"`
+	StaffName     string `json:"staff name"`
 	Price         int    `json:"price"`
 	Reorderat     int    `json:"reorder"`
 	IdSupplier    int    `json:"id supplier"`

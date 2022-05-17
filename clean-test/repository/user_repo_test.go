@@ -14,7 +14,7 @@ func TestGetAllUser(t *testing.T) {
 		"SELECT * FROM `users`")).
 		WillReturnRows(
 			sqlmock.NewRows([]string{"id", "username"}).
-				AddRow(1, "fahmy").AddRow(2, "abida"))
+				AddRow(1, "fifi").AddRow(0, ""))
 	// result query GORM nya seperti apa
 	listUser, err := tu.IFaceUserRepo.GetUsers()
 	if err != nil {

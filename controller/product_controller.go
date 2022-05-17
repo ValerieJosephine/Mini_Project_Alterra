@@ -21,12 +21,12 @@ func (ctrl *AllController) FetchAllproduct(c echo.Context) error {
 //>perintah tulis get data by id (only)
 func (ctrl *AllController) FetchProductWithId(c echo.Context) error {
 	var id int
-	err := ctrl.service.FetchProductWithId(id)
+	data, err := ctrl.service.FetchProductWithId(id)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": err.Error()})
 
 	}
-	return c.JSON(http.StatusOK, err)
+	return c.JSON(http.StatusOK, data)
 }
 
 //>perintah tulis post data

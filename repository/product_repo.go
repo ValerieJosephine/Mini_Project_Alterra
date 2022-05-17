@@ -29,12 +29,13 @@ func (r *Repository) FetchProducts() ([]models.Product, error) {
 
 }
 
-func (r *Repository) FetchProductById(id int) error {
-	err := r.db.Where("id = ?").Find(&models.Product{}).Error
+func (r *Repository) FetchProductById(id int) (models.Product, error) {
+	var products models.Product
+	err := r.db.Where("id = ?", id).Find(&products).Error
 	if err != nil {
-		return err
+		return products, err
 	}
-	return err
+	return products, nil
 
 }
 
@@ -48,7 +49,7 @@ func (r *Repository) StoreProduct(input models.Product) (models.Product, error) 
 }
 
 func (r *Repository) DeleteProduct(id int) error {
-	err := r.db.Where("id = ?").Delete(&models.Product{}).Error
+	err := r.db.Where("id = ?", id).Delete(&models.Product{}).Error
 	if err != nil {
 		return err
 	}
