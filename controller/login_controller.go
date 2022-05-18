@@ -29,7 +29,6 @@ func CheckLogin(c echo.Context) error {
 
 	claims := token.Claims.(jwt.MapClaims)
 	claims["username"] = username
-	claims["level"] = "application"
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
 	t, err := token.SignedString([]byte("secret"))

@@ -9,13 +9,13 @@ import (
 
 func TestGetAllUser(t *testing.T) {
 	tu := NewTestUnit()
-	// ekspektasi query yg dijalankan sama si lib GORM
+
 	tu.Mock.ExpectQuery(regexp.QuoteMeta(
 		"SELECT * FROM `users`")).
 		WillReturnRows(
 			sqlmock.NewRows([]string{"id", "username"}).
 				AddRow(1, "fifi").AddRow(0, ""))
-	// result query GORM nya seperti apa
+	//>hasil
 	listUser, err := tu.IFaceUserRepo.GetUsers()
 	if err != nil {
 		t.Error(err)
